@@ -69,21 +69,14 @@ app.post("/report", checkBodyMiddleware,  async (req, res) => {
     const dataToSendEmail = {email,petName,location,firstName,phone};
     const emailSended = await sendEmail(dataToSendEmail)
     const report = await createReport(firstName,phone,location)
-
-    
-    
     res.json({
         message: emailSended,
         report,
     })
 });
 
-app.put("/myuser",checkBodyMiddleware, authMiddleware,async(req,res)=>{
-    
-    
-    const updatedUser = await updateUserData(req.body, req._user.id);
-    
-    
+app.put("/myuser",checkBodyMiddleware, authMiddleware,async(req,res)=>{ 
+    const updatedUser = await updateUserData(req.body, req._user.id); 
     res.status(200).json({
         updatedUser,
     })
@@ -137,20 +130,7 @@ app.get("/nearPets",async(req,res)=>{
 
 
 //
-app.get("/all/user", (req, res) => {
-    const allUser = User.findAll({})
-    res.json({
-        allUser,
-    })
-})
-app.get("/all/pets", async (req, res) => {
-    const all = await Pets.findAll({})
-    res.json({ all })
-})
-app.get("/all/auth", async (req,res)=>{
-    const all = await Auth.findAll({});
-    res.json({all})
-})
+
 app.get("/all", async (req,res)=>{
     const users = await User.findAll({});
     const pets = await Pets.findAll({});

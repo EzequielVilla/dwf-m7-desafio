@@ -51,11 +51,17 @@ export async function getMyPets(data:Model<UserData>):Promise<Model<PetsData>[]>
     })
     return pets;
 }
-export async function getNearPets(lat,lng) {
+export async function getNearPets(stringLat:string,stringLng:string) {
+    const lat = parseFloat(stringLat);
+    const lng = parseFloat(stringLng);
+    
+    console.log({lat,lng});
+    console.log(typeof lat);
+    
     const res = await index.search(``,{
         aroundLatLng:`${lat},${lng}`,
         // aroundLatLng:"-34.61666,-58.371618", for the test
-        aroundRadius:5000
+        aroundRadius:10000
     })
     
     const petsData = await Promise.all(
@@ -80,7 +86,7 @@ export async function getNearPets(lat,lng) {
     return myDataPet;
 }
 
-export async function updatePetData(data:PetsData, id:number, userId:number){
+export async function updatePetData(data, id:number, userId:number){
     const photo = data.photo;
     const img = await cloudinary.uploader.upload(photo,{
         resource_type: "image",
@@ -104,6 +110,20 @@ export async function updatePetData(data:PetsData, id:number, userId:number){
             userId,
         }
     });
+    try {  
+        const algoliaRes = await index.saveObject({
+            objectID: id,
+            name: data.name,
+            "_geoloc":{
+                "lat": data.lat,
+                "lng":data.lng,
+            }
+        });        
+        return algoliaRes;
+    } catch (error) {
+        console.log(error);
+        
+    }
     return pet
 }
 

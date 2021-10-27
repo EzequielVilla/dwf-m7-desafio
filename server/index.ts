@@ -160,7 +160,7 @@ app.get("/all", async (req,res)=>{
     })
 })
 app.get("*", (req, res) => {
-    const ruta = path.resolve(__dirname, "./../dist/index.html");    
+    const ruta = path.resolve(__dirname, "./../index.html");    
     res.sendFile(ruta);
 })
 app.listen(port, () => {

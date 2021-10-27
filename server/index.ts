@@ -10,8 +10,8 @@ import "dotenv/config"
 import { createReport, sendEmail } from "./controllers/report-controller";
 
 
-const path = require("path");
 const port = process.env.PORT || 3000;
+const path = require("path");
 const app = express();
 app.use(cors());
 app.use(express.json());

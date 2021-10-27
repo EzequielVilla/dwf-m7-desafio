@@ -55,7 +55,7 @@ export async function getNearPets(lat,lng) {
     const res = await index.search(``,{
         aroundLatLng:`${lat},${lng}`,
         // aroundLatLng:"-34.61666,-58.371618", for the test
-        aroundRadius:10000
+        aroundRadius:5000
     })
     
     const petsData = await Promise.all(

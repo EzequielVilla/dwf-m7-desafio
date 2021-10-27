@@ -8,9 +8,7 @@ export function initCard(){
             this.render();
         }
 
-        render(){
-            // const name = this.querySelector(".name").textContent      
-            // const location = this.querySelector(".location").textContent      
+        render(){   
             
             const style = document.createElement("style");
             style.textContent=

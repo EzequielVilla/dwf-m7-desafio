@@ -40,11 +40,7 @@ export async function checkPassword(user:UserData, password:string):Promise<any>
         const data = {auth, exist: false};
         return data;
     } 
-           
-    // if(auth)
-    //     return true 
-    // else   
-    //     return false
+
     
 }
 export function createToken(data:Model<AuthData>): string{

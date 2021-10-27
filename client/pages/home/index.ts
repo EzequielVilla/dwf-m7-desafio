@@ -104,23 +104,6 @@ class initHome extends HTMLElement{
             }
         `
         shadow.appendChild(anotherStyle);
-        // this.innerHTML=`
-        //     <button>mandar email</button>
-        // `
-        // this.querySelector("button").addEventListener("click", async (e)=>{
-        //     e.preventDefault();
-            
-        //     //hardcodeado,despues poner donde corresponde con los datos del formulario.
-        //     const answ = await fetch(API_BASE_URL+`/report`,{ 
-        //     method:"post",            
-        //     headers: {  
-        //         "Content-Type": "application/json",
-        //         },
-        //     body: JSON.stringify({
-        //         email:"ezequiel.n.villa@gmail.com"
-        //         })
-        //     })
-        // })
     }
     ubicationButton(style:HTMLStyleElement){
         this.querySelector(".give-ubication").addEventListener("click",(e)=>{
@@ -152,7 +135,7 @@ class initHome extends HTMLElement{
         })
     }
 
-    //Tengo el userId para saber a que usuario mandarle el email (tengo que conseguir la info del usuario)
+    
     
     async createText(info:Array<any>):Promise<string>{
         return `

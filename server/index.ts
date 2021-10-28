@@ -1,12 +1,12 @@
 import * as express from "express";
 import * as cors from "cors";
+import "dotenv/config"
 import { User } from "./models/user";
 import { createUser, getUserByEmail, getUserById, getUserByToken } from "./controllers/user-controller";
 import { checkPassword, createAuth, createToken, updateUserData } from "./controllers/auth-controller";
 import { createAlgoliaReg, createPet, deletePet, getMyPets, getNearPets, updatePetData } from "./controllers/pet-controller";
 import { authMiddleware, checkBodyMiddleware } from "./controllers/middleware";
 import { Auth, Pets } from "./models";
-import "dotenv/config"
 import { createReport, sendEmail } from "./controllers/report-controller";
 
 

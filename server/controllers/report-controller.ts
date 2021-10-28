@@ -2,10 +2,11 @@
 import { Reports } from "../models";
 import * as SendGrid from "@sendgrid/mail"
 import "dotenv/config"
+import { Model } from "sequelize/types";
 
 
 
-export async function createReport(firstName,phoneNumber,info) {
+export async function createReport(firstName,phoneNumber,info):Promise<Model<any>> {
     const report = await Reports.create({
         defauls:{
             firstName,
@@ -15,7 +16,7 @@ export async function createReport(firstName,phoneNumber,info) {
     })
     return report;
 }
-export async function sendEmail(data) {
+export async function sendEmail(data):Promise<any> {
     const {email,petName,location,firstName,phone} = data;
     SendGrid.setApiKey(process.env.SENDGRID_KEY);
     const msg = {

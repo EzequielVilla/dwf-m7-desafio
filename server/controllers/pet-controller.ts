@@ -51,12 +51,9 @@ export async function getMyPets(data:Model<UserData>):Promise<Model<PetsData>[]>
     })
     return pets;
 }
-export async function getNearPets(stringLat:string,stringLng:string) {
+export async function getNearPets(stringLat:string,stringLng:string):Promise<Array<Object>> {
     const lat = parseFloat(stringLat);
     const lng = parseFloat(stringLng);
-    
-    console.log({lat,lng});
-    console.log(typeof lat);
     
     const res = await index.search(``,{
         aroundLatLng:`${lat},${lng}`,
@@ -86,7 +83,7 @@ export async function getNearPets(stringLat:string,stringLng:string) {
     return myDataPet;
 }
 
-export async function updatePetData(data, id:number, userId:number){
+export async function updatePetData(data, id:number, userId:number):Promise<any>{
     const photo = data.photo;
     const img = await cloudinary.uploader.upload(photo,{
         resource_type: "image",
@@ -127,7 +124,7 @@ export async function updatePetData(data, id:number, userId:number){
     return pet
 }
 
-export async function deletePet(id:number, userId:number){    
+export async function deletePet(id:number, userId:number):Promise<void>{    
     await Pets.destroy({
         where:{
             id,

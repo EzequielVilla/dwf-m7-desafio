@@ -59,7 +59,7 @@ class initHome extends HTMLElement{
             text-transform: uppercase;
         }
 
-        .cont__info{
+        .cont__cardInfo{
             display:flex;
             justify-content: space-between;
 
@@ -67,13 +67,13 @@ class initHome extends HTMLElement{
             text-align: center;
             height:100px;
         }
-        .cont__info__report{
+        .cont__cardInfo__report{
             margin-left: 15px;
             margin-top:20px;
             margin-right:20px;
         }
       
-        .report-new-info{   
+        .report-new-cardInfo{   
             cursor:pointer;
         }
         `
@@ -112,15 +112,13 @@ class initHome extends HTMLElement{
             navigator.geolocation.getCurrentPosition(async (data)=>{
                 const lat = data.coords.latitude;
                 const lng = data.coords.longitude;
-                const info = await state.findNearMissedPets(lat,lng);
+                const cardInfo = await state.findNearMissedPets(lat,lng);
                 
-                if(info.length > 0){
-                    this.innerHTML= await this.createText(info);
+                if(cardInfo.length > 0){
+                    this.innerHTML= await this.createNearMissedPetsCards(cardInfo);
                     this.reportButtonHandler();
                 }   
-                else{
-                    
-                    
+                else{                 
                     this.innerHTML=`
                         <header-comp></header-comp>
                         <div class="container">
@@ -137,25 +135,25 @@ class initHome extends HTMLElement{
 
     
     
-    async createText(info:Array<any>):Promise<string>{
+    async createNearMissedPetsCards(cardInfo:Array<any>):Promise<string>{
         return `
             <header-comp></header-comp>
             <div class="container">
                 <h1>Mascotas perdidas cerca tuyo</h1>
             ${                      
-                 info.map((info)=> {   
+                 cardInfo.map((cardInfo)=> {   
                     return `
                     <div class="cont">
-                        <div class="cont__img" id="${info.userId}">
-                            <img src="${info.photo}" alt="" class="photo">
+                        <div class="cont__img" id="${cardInfo.userId}">
+                            <img src="${cardInfo.photo}" alt="" class="photo">
                         </div>
-                        <div class="cont__info">
-                            <div class="cont__info__data">
-                                <p class="name"> ${info.name}</p>
-                                <p class="location"> ${info.location}</p>                
+                        <div class="cont__cardInfo">
+                            <div class="cont__cardInfo__data">
+                                <p class="name"> ${cardInfo.name}</p>
+                                <p class="location"> ${cardInfo.location}</p>                
                             </div>
-                            <div class="cont__info__report">
-                                <p id="${info.id}"class="report-new-info">REPORTAR <br> INFORMACIÓN</p>
+                            <div class="cont__cardInfo__report">
+                                <p id="${cardInfo.id}"class="report-new-cardInfo">REPORTAR <br> cardInfoRMACIÓN</p>
                             </div>
                         </div>              
                     </div>
@@ -167,7 +165,7 @@ class initHome extends HTMLElement{
     }
 
     reportButtonHandler(){
-        const report = this.querySelectorAll(".report-new-info");
+        const report = this.querySelectorAll(".report-new-cardInfo");
         const name = this.querySelectorAll(".name");
         const userIdEl = this.querySelectorAll(".cont__img");
         //change color of header component
@@ -225,19 +223,20 @@ class initHome extends HTMLElement{
                             align-items: center;
                             text-align: center;
                         }
-                    `                     
+                    `    
+                    //Create popUpWindow.                 
                     popUpWindow.innerHTML=`
                         <div class="popup-container">
                             <img class="close" src="${close}">
                             <div class="input-form-container">
-                                <h1>Reportar info <br> de ${petName}</h1>
+                                <h1>Reportar cardInfo <br> de ${petName}</h1>
                                 <caption-comp>TU NOMBRE</caption-comp>
                                 <input-comp class="myname"></input-comp>
                                 <caption-comp>TU TELÉFONO</caption-comp>
                                 <input-comp class="phone"></input-comp>
                                 <caption-comp>DONDE LO VISTE?</caption-comp>
-                                <input-comp class="find-info"></input-comp>
-                                <button-comp class="send-info">Enviar</button-comp>
+                                <input-comp class="find-cardInfo"></input-comp>
+                                <button-comp class="send-cardInfo">Enviar</button-comp>
                             </div>
                         </div>
 
@@ -254,11 +253,11 @@ class initHome extends HTMLElement{
     }
 
     buttonSendHandler(id,userId,petName):void{
-        this.querySelector(".send-info").addEventListener("click",async(e)=>{
+        this.querySelector(".send-cardInfo").addEventListener("click",async(e)=>{
             e.preventDefault();
             const firstName = this.querySelector(".myname").shadowRoot.querySelector("input").value; 
             const phone = this.querySelector(".phone").shadowRoot.querySelector("input").value;
-            const location = this.querySelector(".find-info").shadowRoot.querySelector("input").value;
+            const location = this.querySelector(".find-cardInfo").shadowRoot.querySelector("input").value;
             const data = {petName,userId,firstName,phone,location};
             await state.sendReport(data);
             

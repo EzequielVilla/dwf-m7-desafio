@@ -1,6 +1,6 @@
 import * as jwt from "jsonwebtoken";
 
-export function checkBodyMiddleware(req,res,next){
+export function checkBodyMiddleware(req,res,next):void{
     if(Object.keys(req.body).length === 0){
         res.status(400).json({
             message: "No data in body"

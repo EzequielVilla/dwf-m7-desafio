@@ -1,7 +1,6 @@
 const MAPBOX_TOKEN = process.env.MAPBOX_TOKEN;
 const mapboxClient = new MapboxClient(MAPBOX_TOKEN);
 export { mapboxClient };
-import { state } from "../../state";
 
 export function viewMap() {
   window.map = initMap();

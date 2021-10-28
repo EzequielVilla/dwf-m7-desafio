@@ -100,7 +100,7 @@ class initPets extends HTMLElement{
         
         
         else{        
-            this.innerHTML= await this.create(cards);
+            this.innerHTML= await this.createMyMissedPetsCards(cards);
             const pen = this.querySelectorAll(".pen");
             for (let i = 0; i < pen.length; i++ ){
                 pen[i].addEventListener("click",async (e)=>{
@@ -118,7 +118,7 @@ class initPets extends HTMLElement{
         
         this.appendChild(style);
     }
-    async create(cards):Promise<string>{
+    async createMyMissedPetsCards(cards):Promise<string>{
         return `     
         <header-comp></header-comp>
         <div class="container">

@@ -29,7 +29,7 @@ export async function getUserByEmail(email:string):Promise<any>{
     })
     return user;
 }
-export async function getUserById(userId){
+export async function getUserById(userId):Promise<string>{
     const user = await User.findOne({
         where:{
             id:userId,

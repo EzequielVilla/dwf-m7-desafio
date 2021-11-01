@@ -126,9 +126,6 @@ app.get("/nearPets",async(req,res)=>{
 });
 
 
-
-
-
 //
 
 app.get("/all", async (req,res)=>{

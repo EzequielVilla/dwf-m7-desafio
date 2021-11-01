@@ -153,7 +153,7 @@ class initHome extends HTMLElement{
                                 <p class="location"> ${cardInfo.location}</p>                
                             </div>
                             <div class="cont__cardInfo__report">
-                                <p id="${cardInfo.id}"class="report-new-cardInfo">REPORTAR <br> INRMACIÓN</p>
+                                <p id="${cardInfo.id}"class="report-new-cardInfo">REPORTAR <br> INFORMACIÓN</p>
                             </div>
                         </div>              
                     </div>

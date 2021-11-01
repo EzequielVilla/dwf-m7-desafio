@@ -1,12 +1,18 @@
 
-import { Reports } from "../models";
+import { Reports } from "../models/reports";
 import * as SendGrid from "@sendgrid/mail"
+import {ReportData} from "../models/reports" 
 import "dotenv/config"
 import { Model } from "sequelize/types";
 
 
 
-export async function createReport(firstName,phoneNumber,info):Promise<Model<any>> {
+export async function createReport(firstName:string,phoneNumber:string,info:string):Promise<Model<ReportData>> {
+    
+    
+    
+
+    
     const report = await Reports.create({
         defauls:{
             firstName,

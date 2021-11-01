@@ -161,7 +161,7 @@ export const state = {
 
     //id -> id del animal
     //userId -> id del usuario al que pertenece.
-    async sendReport(data:Object):Promise<any>{
+    async sendReport(data:Object):Promise<void>{
         const resp = await fetch(API_BASE_URL+`/report`,{
             method:"post",
             headers:{

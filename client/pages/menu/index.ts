@@ -5,6 +5,8 @@ import { buttonHandler } from "./controller";
 
 class initMenu extends HTMLElement{
     connectedCallback():void{
+        state.saveLocalStorage();
+
         this.render();
         this.buttonColor();
         buttonHandler();

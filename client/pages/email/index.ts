@@ -4,6 +4,8 @@ import { Model } from "sequelize/types";
 import {state} from "./../../state"
 class initEmail extends HTMLElement{
     connectedCallback():void{
+        state.saveLocalStorage();
+
         this.render();
 
 

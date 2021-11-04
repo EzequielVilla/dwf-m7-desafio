@@ -19,10 +19,12 @@ import { initButton } from "./components/button";
 import { initCaption } from "./components/caption";
 import { initHeader } from "./components/header";
 import { initCard } from "./components/card/card"
+import { state } from "./state"
 
 
 
 function main(){
+    state.initLocalStorage();
     initButton();
     initInput();
     initCaption();

@@ -7,7 +7,7 @@ import {viewMap} from "./../../lib/mapbox"
 
 class initReportLost extends HTMLElement {
   connectedCallback() {
-    
+    state.saveLocalStorage();
     this.render();
   }
 

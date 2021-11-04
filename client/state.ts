@@ -9,6 +9,7 @@ const API_BASE_URL = process.env.API_BASE_URL || "http://localhost:3000";
 
 
 export const state = {
+    
     data:{
         page :null,
         email: null,
@@ -37,8 +38,24 @@ export const state = {
             cb();         
         }          
         console.log('cambie:', this.data);
+       
     },
-    
+
+    saveLocalStorage(){    
+        localStorage.setItem("data", JSON.stringify({
+            ...this.data,       
+        }));
+    },
+
+    initLocalStorage():void{
+        const localData = JSON.parse(localStorage.getItem("data"))        
+        console.log(localData, 'mostrar local data');
+        if(localData != null){
+            this.setState({
+                ...localData,
+            });
+        }
+    },
     async createOrFindUser (email:string):Promise<any>{
         const resp = await fetch(API_BASE_URL+`/user`,{
             method: "post",
@@ -112,8 +129,6 @@ export const state = {
     },
     async getMyReportedPets(){
         const token = state.getState().token;
-        
-        
         const resp = await fetch(API_BASE_URL+`/mypets`,{
             method:"get",
             headers:{

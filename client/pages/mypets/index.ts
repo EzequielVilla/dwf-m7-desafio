@@ -6,6 +6,8 @@ const pen = require("url:./../../img/pen.svg")
 
 class initPets extends HTMLElement{
     connectedCallback():void{
+        state.saveLocalStorage();
+
         this.render();
     }
 

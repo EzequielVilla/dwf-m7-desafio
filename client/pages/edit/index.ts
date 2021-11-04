@@ -3,6 +3,7 @@ import { state } from "../../state";
 
 class initEdit extends HTMLElement{
     connectedCallback():void{
+        state.saveLocalStorage();
         this.render();
     }
 

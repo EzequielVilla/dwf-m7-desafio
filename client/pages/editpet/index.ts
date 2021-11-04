@@ -8,6 +8,8 @@ import {viewMap} from "./../../lib/mapbox"
 
 class initEditPet extends HTMLElement{
     connectedCallback():void{
+      state.saveLocalStorage();
+
         this.render();
     }
 

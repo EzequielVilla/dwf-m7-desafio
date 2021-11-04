@@ -6,6 +6,8 @@ const close = require("url:./../../img/vector.svg")
 
 class initHome extends HTMLElement{
     connectedCallback():void{
+        state.saveLocalStorage();
+        
         this.render();
     }
 
@@ -92,6 +94,7 @@ class initHome extends HTMLElement{
         `
         this.appendChild(style);
         this.buttonColor(); 
+        this.ubication(style);
         this.ubicationButton(style);
     }
     buttonColor():void{
@@ -105,32 +108,39 @@ class initHome extends HTMLElement{
         `
         shadow.appendChild(anotherStyle);
     }
+    ubication(style:HTMLStyleElement){
+        navigator.geolocation.getCurrentPosition(async (data)=>{
+            const lat = data.coords.latitude;
+            const lng = data.coords.longitude;
+            const cardInfo = await state.findNearMissedPets(lat,lng);
+            
+            if(cardInfo.length > 0){
+                this.innerHTML= await this.createNearMissedPetsCards(cardInfo);
+                this.reportButtonHandler();
+            }   
+            else{                 
+                this.innerHTML=`
+                    <header-comp></header-comp>
+                    <div class="container">
+                        <h1>Mascotas perdidas cerca tuyo</h1>
+                        <caption-comp>No hay mascotas perdidas cerca tuyo.
+                        </caption-comp>   
+                    </div>
+                `
+            }  
+            this.appendChild(style);
+        }, (error)=>{
+            console.log(error);
+            
+        })
+        
+    }
     ubicationButton(style:HTMLStyleElement){
         this.querySelector(".give-ubication").addEventListener("click",(e)=>{
             e.preventDefault();
-            
-            navigator.geolocation.getCurrentPosition(async (data)=>{
-                const lat = data.coords.latitude;
-                const lng = data.coords.longitude;
-                const cardInfo = await state.findNearMissedPets(lat,lng);
-                
-                if(cardInfo.length > 0){
-                    this.innerHTML= await this.createNearMissedPetsCards(cardInfo);
-                    this.reportButtonHandler();
-                }   
-                else{                 
-                    this.innerHTML=`
-                        <header-comp></header-comp>
-                        <div class="container">
-                            <h1>Mascotas perdidas cerca tuyo</h1>
-                            <caption-comp>No hay mascotas perdidas cerca tuyo.
-                            </caption-comp>   
-                        </div>
-                    `
-                }  
-                this.appendChild(style);
-            })
+            this.ubication(style);
         })
+        
     }
 
     

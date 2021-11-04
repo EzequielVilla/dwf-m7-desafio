@@ -4,6 +4,8 @@ import { state } from "../../state";
 
 class initPassword extends HTMLElement{
     connectedCallback():void{
+        state.saveLocalStorage();
+
         this.render();
     }
 

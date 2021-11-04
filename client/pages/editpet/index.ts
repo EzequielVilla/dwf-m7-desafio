@@ -47,7 +47,7 @@ class initEditPet extends HTMLElement{
                     <button-comp class="save-image">Agregar/modificar foto</button-comp>
                     <div id="map" style="width: 250px; height: 250px"></div>
                     <input-comp class="search" type="search"></input-comp>
-                    <caption-comp>Buscá un punto de referencia para reportar a tu mascota. Puede ser una dirección, un barrio o una ciudad.</caption-comp>
+                    <caption-comp>Escribí un punto de referencia para reportar a tu mascota. Puede ser una dirección, un barrio o una ciudad.</caption-comp>
                     <button-comp class="save-button">Guardar</button-comp>
                     <button-comp class="finded-button">Reportar como encontrado</button-comp>
                 </div>

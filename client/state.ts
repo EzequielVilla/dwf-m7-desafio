@@ -49,7 +49,6 @@ export const state = {
 
     initLocalStorage():void{
         const localData = JSON.parse(localStorage.getItem("data"))        
-        console.log(localData, 'mostrar local data');
         if(localData != null){
             this.setState({
                 ...localData,

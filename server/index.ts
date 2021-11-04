@@ -22,18 +22,29 @@ app.use(express.static("dist"));
 
 app.post("/user", checkBodyMiddleware, async(req,res)=>{
     const [newUser, created] = await createUser(req.body.email)
-    if(created == true){
+    created ? 
+        
         res.status(200).json({
             created,
             newUser,
         })
-    }
-    else {
+        : 
         res.status(400).json({
             created,
             message: "User already exist"
         })
-    }
+    // if(created){
+    //     res.status(200).json({
+    //         created,
+    //         newUser,
+    //     })
+    // }
+    // else {
+    //     res.status(400).json({
+    //         created,
+    //         message: "User already exist"
+    //     })
+    // }
 })
 app.post("/auth", checkBodyMiddleware, async (req, res) => {
     const { user, password, firstName } = req.body;    
@@ -103,7 +114,7 @@ app.get("/:email/:password", async(req,res)=>{
     const {email,password} = req.params;
     const user = await getUserByEmail(email);
     const data = await checkPassword(user,password);
-    if(data.exist == true){
+    if(data.exist){
         const token = createToken(data.auth)
         res.status(200).json({
             token,

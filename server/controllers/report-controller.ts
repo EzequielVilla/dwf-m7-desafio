@@ -9,10 +9,6 @@ import { Model } from "sequelize/types";
 
 export async function createReport(firstName:string,phoneNumber:string,info:string):Promise<Model<ReportData>> {
     
-    
-    
-
-    
     const report = await Reports.create({
         defauls:{
             firstName,

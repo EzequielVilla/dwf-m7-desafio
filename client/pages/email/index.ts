@@ -55,7 +55,7 @@ class initEmail extends HTMLElement{
             const created = data.created;
             const newUser:Model = data.newUser;
             state.getState().email= email;
-            if(created == true){
+            if(created){
                 const lastState = state.getState();
                 state.setState({
                     ...lastState,

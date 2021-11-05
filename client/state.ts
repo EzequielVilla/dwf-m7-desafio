@@ -37,7 +37,7 @@ export const state = {
         for(const cb of this.listeners){       
             cb();         
         }          
-        console.log('cambie:', this.data);
+        
        
     },
 
@@ -136,11 +136,12 @@ export const state = {
         })
         const data = await resp.json();
         const pets:Array<any> = data.pets;
+        console.log(pets);
         
         
         const petsData = pets.map((item)=>{
-            const {id,name,photo,userId,location} = item;
-            const data = {id,name,photo,userId,location}
+            const {id,name,photo,userId,location,lat,lng} = item;
+            const data = {id,name,photo,userId,location,lat,lng}
             return data;
         })
         return petsData;

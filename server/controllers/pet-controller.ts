@@ -1,4 +1,4 @@
-import { Model } from "sequelize/types";
+import { IndexHints, Model } from "sequelize/types";
 import { PetsData } from "../models/pets";
 import { Pets } from "../models";
 import { index } from "../lib/algolia";

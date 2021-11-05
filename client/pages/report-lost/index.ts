@@ -61,7 +61,7 @@ class initReportLost extends HTMLElement {
     this.appendChild(style);
     this.buttonsColor();
     this.dropzone();
-    viewMap();
+    // viewMap();
     this.reportClick();
     this.cancelClick();
     

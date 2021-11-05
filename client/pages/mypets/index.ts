@@ -106,8 +106,13 @@ class initPets extends HTMLElement{
             const pen = this.querySelectorAll(".pen");
             for (let i = 0; i < pen.length; i++ ){
                 pen[i].addEventListener("click",async (e)=>{
-                    const id = pen[i].getAttribute("id");
-                    state.getState().photoId = id;
+                    const id = pen[i].getAttribute("id");                    
+                    const lat = pen[i].getAttribute("data-lat");
+                    const lng = pen[i].getAttribute("data-lng");
+                    state.getState().photoId = id;                 
+                    state.getState().missedCoordinates.lat= lat;
+                    state.getState().missedCoordinates.lng= lng;
+                     
                     Router.go("/editPet")
                 })
                 
@@ -121,6 +126,8 @@ class initPets extends HTMLElement{
         this.appendChild(style);
     }
     async createMyMissedPetsCards(cards):Promise<string>{
+        
+        
         return `     
         <header-comp></header-comp>
         <div class="container">
@@ -132,13 +139,13 @@ class initPets extends HTMLElement{
                         <div class="cont__img">
                             <img src="${info.photo}" alt="" class="photo">
                         </div>
-                        <div class="cont__info">
+                        <div class="cont__info" >
                             <div class="cont__info__data">
                                 <p class="name"> ${info.name}</p>
                                 <p class="location"> ${info.location}</p>                
                             </div>
                             <div class="cont__info__report">
-                                <img class="pen" id="${info.id}" src="${pen}">
+                                <img class="pen" id="${info.id}" src="${pen}"data-lat="${info.lat}" data-lng="${info.lng}">
                             </div>
                         </div>              
                     </div>

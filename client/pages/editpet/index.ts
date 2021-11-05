@@ -47,6 +47,7 @@ class initEditPet extends HTMLElement{
                     <input-comp class="name"></input-comp>
                     <img class="image" src=${defaultImage}>
                     <button-comp class="save-image">Agregar/modificar foto</button-comp>
+                    <caption-comp>El siguiente mapa muestra dónde se reportó perdido</caption-comp>
                     <div id="map" style="width: 250px; height: 250px"></div>
                     <input-comp class="search" type="search"></input-comp>
                     <caption-comp>Escribí un punto de referencia para reportar a tu mascota. Puede ser una dirección, un barrio o una ciudad.</caption-comp>
@@ -59,9 +60,14 @@ class initEditPet extends HTMLElement{
         this.appendChild(style);
         this.buttonsColor();
         this.dropzone();
-        viewMap();
         this.saveClick();
         this.findedClick();
+        const lat = state.getState().missedCoordinates.lat;
+        const lng = state.getState().missedCoordinates.lng;
+     
+        
+        viewMap(lat,lng);
+        
         
         
         

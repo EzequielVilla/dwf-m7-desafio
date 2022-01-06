@@ -68,7 +68,6 @@ class initPets extends HTMLElement{
             .cont__info{
                 display:flex;
                 justify-content: space-between;
-
                 align-items: center;
                 text-align: center;
                 height:100px;
@@ -79,7 +78,6 @@ class initPets extends HTMLElement{
                 margin-right:20px;
             }
             .pen{
-                
                 cursor:pointer;
             }
             .data{
@@ -114,14 +112,9 @@ class initPets extends HTMLElement{
                     state.getState().missedCoordinates.lng= lng;
                      
                     Router.go("/editPet")
-                })
-                
-            }
-
-            
-        }
-        
-        
+                })         
+            }            
+        }        
         
         this.appendChild(style);
     }

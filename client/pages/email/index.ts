@@ -20,8 +20,7 @@ class initEmail extends HTMLElement{
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
-                text-align: center;
-                
+                text-align: center;        
         }
         `
         this.innerHTML=

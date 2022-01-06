@@ -51,9 +51,11 @@ export function createToken(data:Model<AuthData>): string{
 
 export async function updateUserData(data, userId:number){    
     const {name,password} = data;
-    console.log({name,password});
+    console.log({name,password,userId});
     
     const user = await Auth.findByPk(userId);
+    console.log({user}, 'el user a cambiar');
+    
     const updatedUser = await Auth.update(
         {
             ...user,
@@ -64,6 +66,8 @@ export async function updateUserData(data, userId:number){
             id: userId,
         }
     })
+    console.log(updatedUser, "El updated USer");
+    
     return updatedUser;
 }
 

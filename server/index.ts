@@ -22,8 +22,7 @@ app.use(express.static("dist"));
 
 app.post("/user", checkBodyMiddleware, async(req,res)=>{
     const [newUser, created] = await createUser(req.body.email)
-    created ? 
-        
+    created ?       
         res.status(200).json({
             created,
             newUser,
@@ -33,18 +32,6 @@ app.post("/user", checkBodyMiddleware, async(req,res)=>{
             created,
             message: "User already exist"
         })
-    // if(created){
-    //     res.status(200).json({
-    //         created,
-    //         newUser,
-    //     })
-    // }
-    // else {
-    //     res.status(400).json({
-    //         created,
-    //         message: "User already exist"
-    //     })
-    // }
 })
 app.post("/auth", checkBodyMiddleware, async (req, res) => {
     const { user, password, firstName } = req.body;    
@@ -112,6 +99,8 @@ app.delete("/pet/:id",authMiddleware,async(req,res)=>{
 
 app.get("/:email/:password", async(req,res)=>{
     const {email,password} = req.params;
+    
+    
     const user = await getUserByEmail(email);
     const data = await checkPassword(user,password);
     if(data.exist){

@@ -136,7 +136,7 @@ class initHome extends HTMLElement{
         
     }
     ubicationButton(style:HTMLStyleElement){
-        this.querySelector(".give-ubication").addEventListener("click",(e)=>{
+        this.querySelector(".give-ubication").addEventListener("mouseup",(e)=>{
             e.preventDefault();
             this.ubication(style);
         })
@@ -192,7 +192,7 @@ class initHome extends HTMLElement{
         `
         //
         for (let i = 0; i < report.length; i++ ){
-                report[i].addEventListener("click",async (e)=>{
+                report[i].addEventListener("mouseup",async (e)=>{
                     const id = report[i].getAttribute("id");
                     const userId = userIdEl[i].getAttribute("id");
                     const petName = name[i].textContent;                           
@@ -255,14 +255,14 @@ class initHome extends HTMLElement{
                     this.buttonColor();
                     this.appendChild(popUpWindowStyle);
                     headerStyle.appendChild(opacityComponent);
-                    this.buttonSendHandler(id,userId,petName);
+                    this.buttonSendHandler(userId,petName);
                     this.buttonClose(popUpWindow,popUpWindowStyle,headerStyle,opacityComponent);
                 })
                 
             }
     }
 
-    buttonSendHandler(id,userId,petName):void{
+    buttonSendHandler(userId,petName):void{
         this.querySelector(".send-cardInfo").addEventListener("click",async(e)=>{
             e.preventDefault();
             const firstName = this.querySelector(".myname").shadowRoot.querySelector("input").value; 

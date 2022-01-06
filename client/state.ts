@@ -36,9 +36,7 @@ export const state = {
         this.data = newState;
         for(const cb of this.listeners){       
             cb();         
-        }          
-        
-       
+        }                 
     },
 
     saveLocalStorage(){    

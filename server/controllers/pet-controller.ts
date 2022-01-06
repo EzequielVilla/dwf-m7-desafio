@@ -9,16 +9,20 @@ import { cloudinary } from "../lib/cloudinary";
 
 export async function createPet(data:PetsData, user:UserData):Promise<Model<PetsData>> {
     const photo = data.photo;
+    
+    
     try {
         const img = await cloudinary.uploader.upload(photo,{
             resource_type: "image",
             discard_original_filename:true,
             width:1000,
         })
+        console.log({img});
             
         const pet = await Pets.create({
             ...data,
             photo:img.secure_url,
+
             userId: user.id,
         })            
         return pet;    
@@ -70,7 +74,11 @@ export async function getNearPets(stringLat:string,stringLng:string):Promise<Arr
         })
     )
     
+    console.log(petsData.length);
+    
     const myDataPet = await Promise.all(petsData.map((item)=>{   
+        // console.log(item);
+        
             const id = item.getDataValue("id");
             const name = item.getDataValue("name");
             const photo= item.getDataValue("photo");
@@ -107,6 +115,7 @@ export async function updatePetData(data, id:number, userId:number):Promise<any>
             userId,
         }
     });
+    
     try {  
         const algoliaRes = await index.saveObject({
             objectID: id,
@@ -125,11 +134,14 @@ export async function updatePetData(data, id:number, userId:number):Promise<any>
 }
 
 export async function deletePet(id:number, userId:number):Promise<void>{    
+    console.log({id,userId});
+
     await Pets.destroy({
         where:{
             id,
             userId,
         }
     })
+     await index.deleteObject(`${id}`)
 }
 

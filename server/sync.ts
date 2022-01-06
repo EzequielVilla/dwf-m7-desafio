@@ -3,7 +3,7 @@ import { Auth, Pets, Reports } from "./models";
 import { User } from "./models/user";
 
 
-User.sequelize.sync({alter:true});
-Auth.sequelize.sync({alter:true});
-Pets.sequelize.sync({alter:true});
-Reports.sequelize.sync({alter:true});
+User.sequelize.sync({force:true});
+// Auth.sequelize.sync({force:true});
+// Pets.sequelize.sync({force:true});
+// Reports.sequelize.sync({force:true});
